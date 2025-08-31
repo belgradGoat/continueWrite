@@ -2,7 +2,7 @@
   "name": "gui",
   "private": true,
   "type": "module",
-  "author": "Continue Dev, Inc",
+  "author": "ContinueWrite Dev",
   "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",

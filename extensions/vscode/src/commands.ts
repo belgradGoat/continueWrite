@@ -349,40 +349,68 @@ const getCommandsMap: (
       focusGUI();
       void sidebar.webviewProtocol?.request("generateRule", undefined);
     },
-    "continue.writeCommentsForCode": async () => {
-      captureCommandTelemetry("writeCommentsForCode");
+    "continue.improveDialogue": async () => {
+      captureCommandTelemetry("improveDialogue");
 
       streamInlineEdit(
-        "comment",
-        "Write comments for this code. Do not change anything about the code itself.",
+        "improveDialogue",
+        "Improve the dialogue in this text to make it more natural, engaging, and true to each character's voice. Focus on subtext, rhythm, and authentic speech patterns.",
       );
     },
-    "continue.writeDocstringForCode": async () => {
-      captureCommandTelemetry("writeDocstringForCode");
+    "continue.addDescription": async () => {
+      captureCommandTelemetry("addDescription");
 
       void streamInlineEdit(
-        "docstring",
-        "Write a docstring for this code. Do not change anything about the code itself.",
+        "addDescription",
+        "Add vivid, sensory descriptions to enhance this scene. Include details that engage multiple senses and create atmosphere without overwriting.",
       );
     },
-    "continue.fixCode": async () => {
-      captureCommandTelemetry("fixCode");
+    "continue.improveWriting": async () => {
+      captureCommandTelemetry("improveWriting");
 
       streamInlineEdit(
-        "fix",
-        "Fix this code. If it is already 100% correct, simply rewrite the code.",
+        "improveWriting",
+        "Improve this writing to enhance clarity, flow, and engagement. Maintain the author's voice while strengthening prose and narrative impact.",
       );
     },
-    "continue.optimizeCode": async () => {
-      captureCommandTelemetry("optimizeCode");
-      streamInlineEdit("optimize", "Optimize this code");
+    "continue.enhanceProse": async () => {
+      captureCommandTelemetry("enhanceProse");
+      streamInlineEdit("enhanceProse", "Enhance the prose style of this text. Improve sentence variety, word choice, and literary flow while preserving the author's unique voice.");
     },
     "continue.fixGrammar": async () => {
       captureCommandTelemetry("fixGrammar");
       streamInlineEdit(
         "fixGrammar",
-        "If there are any grammar or spelling mistakes in this writing, fix them. Do not make other large changes to the writing.",
+        "Fix any grammar, spelling, or punctuation errors in this text. Make minimal changes to preserve the author's style and voice.",
       );
+    },
+    "continue.continueScene": async () => {
+      captureCommandTelemetry("continueScene");
+      streamInlineEdit(
+        "continueScene",
+        "Continue this scene in a natural way that maintains the established tone, style, and character voices. Advance the narrative meaningfully.",
+      );
+    },
+    "continue.brainstormIdeas": async () => {
+      captureCommandTelemetry("brainstormIdeas");
+      void sidebar.webviewProtocol?.request("newSession", undefined);
+      sidebar.webviewProtocol?.request("userInput", {
+        input: "/brainstorm",
+      });
+    },
+    "continue.developCharacter": async () => {
+      captureCommandTelemetry("developCharacter");
+      void sidebar.webviewProtocol?.request("newSession", undefined);
+      sidebar.webviewProtocol?.request("userInput", {
+        input: "/character",
+      });
+    },
+    "continue.createOutline": async () => {
+      captureCommandTelemetry("createOutline");
+      void sidebar.webviewProtocol?.request("newSession", undefined);
+      sidebar.webviewProtocol?.request("userInput", {
+        input: "/outline",
+      });
     },
     "continue.clearConsole": async () => {
       consoleView.clearLog();
@@ -835,6 +863,47 @@ const getCommandsMap: (
       await vscode.commands.executeCommand(
         "editor.action.inlineSuggest.trigger",
       );
+    },
+
+    // ContinueWrite - Writing assistance commands
+    "continuewrite.improveDialogue": async () => {
+      captureCommandTelemetry("improveDialogue");
+      streamInlineEdit("improveDialogue", "Improve the dialogue in this text to make it more natural, engaging, and true to each character's voice. Focus on subtext, rhythm, and authentic speech patterns.");
+    },
+
+    "continuewrite.addDescription": async () => {
+      captureCommandTelemetry("addDescription");
+      streamInlineEdit("addDescription", "Add vivid, sensory descriptions to enhance this scene. Include details that engage multiple senses and create atmosphere without overwriting.");
+    },
+
+    "continuewrite.improveWriting": async () => {
+      captureCommandTelemetry("improveWriting");
+      streamInlineEdit("improveWriting", "Improve this writing to enhance clarity, flow, and engagement. Maintain the author's voice while strengthening prose and narrative impact.");
+    },
+
+    "continuewrite.enhanceProse": async () => {
+      captureCommandTelemetry("enhanceProse");
+      streamInlineEdit("enhanceProse", "Enhance the prose style of this text. Improve sentence variety, word choice, and literary flow while preserving the author's unique voice.");
+    },
+
+    "continuewrite.fixGrammar": async () => {
+      captureCommandTelemetry("fixGrammar");
+      streamInlineEdit("fixGrammar", "Fix any grammar, spelling, or punctuation errors in this text. Make minimal changes to preserve the author's style and voice.");
+    },
+
+    "continuewrite.continueScene": async () => {
+      captureCommandTelemetry("continueScene");
+      streamInlineEdit("continueScene", "Continue this scene in a natural way that maintains the established tone, style, and character voices. Advance the narrative meaningfully.");
+    },
+
+    "continuewrite.brainstormIdeas": async () => {
+      captureCommandTelemetry("brainstormIdeas");
+      streamInlineEdit("brainstormIdeas", "Generate creative brainstorming ideas based on this text. Provide plot suggestions, character development ideas, or thematic elements to explore.");
+    },
+
+    "continuewrite.developCharacter": async () => {
+      captureCommandTelemetry("developCharacter");
+      streamInlineEdit("developCharacter", "Develop this character further with backstory, personality traits, motivations, and unique characteristics that will make them compelling and memorable.");
     },
   };
 };

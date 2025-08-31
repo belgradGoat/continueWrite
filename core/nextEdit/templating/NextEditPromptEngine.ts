@@ -1,4 +1,6 @@
 import Handlebars from "handlebars";
+
+type HandlebarsTemplateDelegate = (context: any) => string;
 import { NEXT_EDIT_MODELS } from "../../llm/constants";
 import {
   INSTINCT_USER_PROMPT_PREFIX,

@@ -1,7 +1,13 @@
 import path from "path";
 
 import { distance } from "fastest-levenshtein";
-import Parser from "web-tree-sitter";
+import Parser, { Tree } from "web-tree-sitter";
+
+interface IParser {
+  parse(input: string, oldTree?: Tree, options?: any): Tree;
+  setLanguage(language: any): void;
+}
+type ParserInstance = IParser;
 
 import { DiffLine } from "../..";
 import { LANGUAGES } from "../../autocomplete/constants/AutocompleteLanguageInfo";
@@ -108,11 +114,11 @@ function shouldRejectDiff(diff: DiffLine[]): boolean {
 }
 
 function nodeSurroundedInLazyBlocks(
-  parser: Parser,
+  parser: IParser,
 
   file: string,
   filename: string,
-): { newTree: Parser.Tree; newFile: string } | undefined {
+): { newTree: Tree; newFile: string } | undefined {
   const ext = path.extname(filename).slice(1);
   const language = LANGUAGES[ext];
   if (language) {

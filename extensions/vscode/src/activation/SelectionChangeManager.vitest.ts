@@ -25,7 +25,7 @@ vi.mock("vscode", () => ({
         },
         getText: vi.fn().mockReturnValue("Sample document text"),
         lineCount: 10,
-        lineAt: vi.fn((line) => ({
+        lineAt: vi.fn((line: number) => ({
           text: "sample line text",
           range: {
             start: { line, character: 0 },
@@ -81,7 +81,7 @@ vi.mock("core/nextEdit/NextEditPrefetchQueue", () => ({
 }));
 
 vi.mock("core/util/pathToUri", () => ({
-  localPathOrUriToPath: vi.fn((uri) => uri.replace("file://", "")),
+  localPathOrUriToPath: vi.fn((uri: string) => uri.replace("file://", "")),
 }));
 
 vi.mock("../VsCodeIde", () => ({

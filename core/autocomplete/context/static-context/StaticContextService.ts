@@ -425,8 +425,8 @@ export class StaticContextService {
         // if (!seenDecls.has(JSON.stringify()) {
         const originalDeclText =
           tld.pattern === 2
-            ? tld.captures.find((d) => d.name === "top.fn.decl")!.node.text
-            : tld.captures.find((d) => d.name === "top.var.decl")!.node.text;
+            ? tld.captures.find((d: any) => d.name === "top.fn.decl")!.node.text
+            : tld.captures.find((d: any) => d.name === "top.var.decl")!.node.text;
 
         if (tld.pattern === 2) {
           // build a type span
@@ -502,7 +502,7 @@ export class StaticContextService {
           );
         } else {
           const varTypNode = tld.captures.find(
-            (d) => d.name === "top.var.type",
+            (d: any) => d.name === "top.var.type",
           )!.node;
           await this.extractRelevantHeadersHelper(
             originalDeclText,

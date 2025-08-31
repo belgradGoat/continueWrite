@@ -3,21 +3,25 @@ import {
   SlashCommandDescription,
   SlashCommandWithSource,
 } from "../../..";
-import GenerateTerminalCommand from "./cmd";
-import CommitMessageCommand from "./commit";
-import DraftIssueCommand from "./draftIssue";
+import BrainstormCommand from "./brainstorm";
+import CharacterCommand from "./character";
+import ContinueSceneCommand from "./continue-scene";
+import DescribeCommand from "./describe";
+import DialogueCommand from "./dialogue";
 import HttpSlashCommand from "./http";
 import OnboardSlashCommand from "./onboard";
-import ReviewMessageCommand from "./review";
+import OutlineCommand from "./outline";
 import ShareSlashCommand from "./share";
 
 const LegacyBuiltInSlashCommands: SlashCommand[] = [
-  DraftIssueCommand,
+  ContinueSceneCommand,
+  BrainstormCommand,
+  CharacterCommand,
+  OutlineCommand,
+  DialogueCommand,
+  DescribeCommand,
   ShareSlashCommand,
-  GenerateTerminalCommand,
   HttpSlashCommand,
-  CommitMessageCommand,
-  ReviewMessageCommand,
   OnboardSlashCommand,
 ];
 

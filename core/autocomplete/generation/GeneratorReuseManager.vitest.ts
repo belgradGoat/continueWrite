@@ -23,7 +23,7 @@ function createMockGenerator(
     }
   };
   const newGenerator = vi
-    .fn<() => AsyncGenerator<string>>()
+    .fn()
     .mockReturnValue(mockGenerator());
 
   return newGenerator;
@@ -178,7 +178,7 @@ describe("GeneratorReuseManager", () => {
       throw error;
     };
     const newGenerator = vi
-      .fn<() => AsyncGenerator<string>>()
+      .fn()
       .mockReturnValue(mockGenerator());
 
     const prefix = "";

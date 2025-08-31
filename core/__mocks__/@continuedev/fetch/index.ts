@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 
 export const fetchwithRequestOptions = vi.fn(
-  async (url, options, requestOptions) => {
+  async (url: any, options?: any, requestOptions?: any) => {
     console.log("Mocked fetch called with:", url, options, requestOptions);
     return {
       ok: true,
@@ -11,6 +11,6 @@ export const fetchwithRequestOptions = vi.fn(
   },
 );
 
-export const streamSse = vi.fn(function* () {
+export const streamSse = vi.fn().mockImplementation(function* () {
   yield "";
 });

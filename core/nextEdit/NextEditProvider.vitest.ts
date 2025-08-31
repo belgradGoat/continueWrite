@@ -54,7 +54,7 @@ describe("_calculateOptimalEditableRegion", () => {
       getRepoName: vi.fn().mockResolvedValue("test-repo"),
       getUniqueId: vi.fn().mockResolvedValue("test-id"),
       getIdeInfo: vi.fn().mockResolvedValue({ ideType: "vscode" }),
-      onDidChangeActiveTextEditor: vi.fn().mockImplementation((callback) => {
+      onDidChangeActiveTextEditor: vi.fn().mockImplementation((callback: any) => {
         // Return a disposable object that does nothing when disposed
         return {
           dispose: () => {},

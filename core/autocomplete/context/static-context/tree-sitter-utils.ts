@@ -1,5 +1,11 @@
 import * as fs from "fs/promises";
-import Parser from "web-tree-sitter";
+import Parser, { Tree } from "web-tree-sitter";
+
+interface IParser {
+  parse(input: string, oldTree?: Tree, options?: any): Tree;
+  setLanguage(language: any): void;
+  getLanguage(): any;
+}
 import { getFullLanguageName, getQueryForFile } from "../../../util/treeSitter";
 import { getAst } from "../../util/ast";
 
@@ -17,7 +23,7 @@ export function findEnclosingTypeDeclaration(
   sourceCode: string,
   cursorLine: number,
   cursorColumn: number,
-  ast: Parser.Tree,
+  ast: Tree,
 ): TypeDeclarationResult | null {
   const point = { row: cursorLine, column: cursorColumn };
   let node = ast.rootNode.descendantForPosition(point);
@@ -53,7 +59,7 @@ export function findEnclosingTypeDeclaration(
 
 export async function extractTopLevelDecls(
   currentFile: string,
-  givenParser?: Parser,
+  givenParser?: IParser,
 ) {
   const ast = await getAst(currentFile, await fs.readFile(currentFile, "utf8"));
   if (!ast) {
@@ -80,7 +86,7 @@ export async function extractTopLevelDecls(
 
 export async function extractTopLevelDeclsWithFormatting(
   currentFile: string,
-  givenParser?: Parser,
+  givenParser?: IParser,
 ) {
   const ast = await getAst(currentFile, await fs.readFile(currentFile, "utf8"));
   if (!ast) {

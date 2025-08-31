@@ -14,14 +14,14 @@ function convertToLetter(num: number): string {
 
 export function registerHelpers(
   handlebars: HandlebarsType,
-  helpers: Array<[string, Handlebars.HelperDelegate]>,
+  helpers: Array<[string, HandlebarsType["registerHelper"] extends (name: string, helper: infer H) => any ? H : any]>,
 ): {
   [key: string]: Promise<string>;
 } {
   const promises: { [key: string]: Promise<string> } = {};
 
   for (const [name, helper] of helpers) {
-    handlebars.registerHelper(name, (...args) => {
+    handlebars.registerHelper(name, (...args: any[]) => {
       const id = uuidv4();
       promises[id] = helper(...args);
       return `__${id}__`;

@@ -19,7 +19,7 @@ describe("isNextEditTest", () => {
   });
 
   test("returns false when NEXT_EDIT_TEST_ENABLED is undefined", () => {
-    vi.stubEnv("NEXT_EDIT_TEST_ENABLED", undefined);
+    vi.stubEnv("NEXT_EDIT_TEST_ENABLED", "");
     expect(isNextEditTest()).toBe(false);
   });
 });

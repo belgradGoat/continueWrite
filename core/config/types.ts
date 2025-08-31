@@ -1041,6 +1041,14 @@ declare global {
     fix?: string;
     optimize?: string;
     fixGrammar?: string;
+    // ContinueWrite - Writing assistance prompts
+    improveDialogue?: string;
+    addDescription?: string;
+    improveWriting?: string;
+    enhanceProse?: string;
+    continueScene?: string;
+    brainstormIdeas?: string;
+    developCharacter?: string;
   }
   
   interface ExperimentalModelRoles {

@@ -1,4 +1,4 @@
-import { ConversationStarterCards } from "../../components/ConversationStarters";
+import { WritingPrompts } from "../../components/ConversationStarters/WritingPrompts";
 import { ExploreHubCard } from "../../components/ExploreHubCard";
 import { OnboardingCard } from "../../components/OnboardingCard";
 
@@ -18,7 +18,7 @@ export function EmptyChatBody({ showOnboardingCard }: EmptyChatBodyProps) {
   return (
     <div className="mx-2 mt-2">
       <ExploreHubCard />
-      <ConversationStarterCards />
+      <WritingPrompts />
     </div>
   );
 }

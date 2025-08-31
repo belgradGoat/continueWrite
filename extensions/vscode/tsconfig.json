@@ -10,7 +10,14 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "types": ["mocha"] // This solves conflict between jest and mocha: https://github.com/cypress-io/cypress/issues/7435#issuecomment-631695007
+    "types": ["mocha"], // This solves conflict between jest and mocha: https://github.com/cypress-io/cypress/issues/7435#issuecomment-631695007
+    "paths": {
+      "vitest": ["./src/stubs/vitest"],
+      "handlebars": ["./src/stubs/handlebars"],
+      "web-tree-sitter": ["./src/stubs/web-tree-sitter"],
+      "@continuedev/fetch": ["./src/stubs/fetch"]
+    },
+    "baseUrl": "./"
   },
   "include": ["src/**/*", "../../core/**/*.ts", "../../core/**/*.d.ts"],
   // core/test uses @types/jest, which conflicts with @types/mocha

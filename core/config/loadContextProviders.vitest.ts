@@ -15,28 +15,28 @@ vi.mock("../context/providers", () => ({
 
 // Mock all provider classes
 vi.mock("../context/providers/CurrentFileContextProvider", () => ({
-  default: vi.fn().mockImplementation((options) => ({
+  default: vi.fn().mockImplementation((options: { [key: string]: any }) => ({
     description: { title: "current-file" },
     options,
   })),
 }));
 
 vi.mock("../context/providers/DiffContextProvider", () => ({
-  default: vi.fn().mockImplementation((options) => ({
+  default: vi.fn().mockImplementation((options: { [key: string]: any }) => ({
     description: { title: "diff" },
     options,
   })),
 }));
 
 vi.mock("../context/providers/FileContextProvider", () => ({
-  default: vi.fn().mockImplementation((options) => ({
+  default: vi.fn().mockImplementation((options: { [key: string]: any }) => ({
     description: { title: "file" },
     options,
   })),
 }));
 
 vi.mock("../context/providers/ProblemsContextProvider", () => {
-  const MockProblemsContextProvider = vi.fn().mockImplementation((options) => ({
+  const MockProblemsContextProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
     description: { title: "problems" },
     options,
   }));
@@ -45,14 +45,14 @@ vi.mock("../context/providers/ProblemsContextProvider", () => {
 });
 
 vi.mock("../context/providers/RulesContextProvider", () => ({
-  default: vi.fn().mockImplementation((options) => ({
+  default: vi.fn().mockImplementation((options: { [key: string]: any }) => ({
     description: { title: "rules" },
     options,
   })),
 }));
 
 vi.mock("../context/providers/TerminalContextProvider", () => {
-  const MockTerminalContextProvider = vi.fn().mockImplementation((options) => ({
+  const MockTerminalContextProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
     description: { title: "terminal" },
     options,
   }));
@@ -146,7 +146,7 @@ describe("loadConfigContextProviders", () => {
 
 describe("with valid config", () => {
   it("should load providers from config with correct parameters", () => {
-    const mockProvider = vi.fn().mockImplementation((options) => ({
+    const mockProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "custom-provider" },
       options,
     })) as any;
@@ -191,12 +191,12 @@ describe("with valid config", () => {
   });
 
   it("should handle multiple providers in config", () => {
-    const mockProvider1 = vi.fn().mockImplementation((options) => ({
+    const mockProvider1 = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "provider-1" },
       options,
     })) as any;
 
-    const mockProvider2 = vi.fn().mockImplementation((options) => ({
+    const mockProvider2 = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "provider-2" },
       options,
     })) as any;
@@ -235,7 +235,7 @@ describe("with valid config", () => {
   });
 
   it("should handle config with empty params", () => {
-    const mockProvider = vi.fn().mockImplementation((options) => ({
+    const mockProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "no-params-provider" },
       options,
     })) as any;
@@ -259,7 +259,7 @@ describe("with valid config", () => {
   });
 
   it("should handle config without params property", () => {
-    const mockProvider = vi.fn().mockImplementation((options) => ({
+    const mockProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "provider-without-params" },
       options,
     })) as any;
@@ -343,7 +343,7 @@ describe("error handling", () => {
   });
 
   it("should handle mix of valid and invalid providers", () => {
-    const mockValidProvider = vi.fn().mockImplementation((options) => ({
+    const mockValidProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "valid-provider" },
       options,
     })) as any;
@@ -416,7 +416,7 @@ describe("default provider merging", () => {
   });
 
   it("should add default providers not present in config", () => {
-    const mockCustomProvider = vi.fn().mockImplementation((options) => ({
+    const mockCustomProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "custom-only" },
       options,
     })) as any;
@@ -452,7 +452,7 @@ describe("default provider merging", () => {
   });
 
   it("should preserve order with configured providers first", () => {
-    const mockProvider = vi.fn().mockImplementation((options) => ({
+    const mockProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "custom-provider" },
       options,
     })) as any;
@@ -530,7 +530,7 @@ describe("edge cases", () => {
 
   it("should handle provider with same title as default but different implementation", () => {
     // Mock a provider with same title as a default
-    const mockFileProvider = vi.fn().mockImplementation((options) => ({
+    const mockFileProvider = vi.fn().mockImplementation((options: { [key: string]: any }) => ({
       description: { title: "file" }, // Same title as FileContextProvider
       options,
       customProperty: "custom-implementation",
